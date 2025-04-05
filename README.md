@@ -19,3 +19,7 @@ npx sequelize-cli model:generate --name Task --attributes name:string
 //npx sequelize-cli db:migrate:undo
 
 After creating all the modeles, create the BE queries in Controllers and routes.
+
+npx sequelize-cli seed:generate --name rewards
+npx sequelize-cli db:seed --seed 20250405053753-rewards.js
+npx sequelize-cli db:seed:undo --seed 20250405053753-rewards.js

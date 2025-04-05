@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
+      avartar: DataTypes.STRING,
     },
     {
       sequelize,

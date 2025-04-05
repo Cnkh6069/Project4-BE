@@ -28,6 +28,9 @@ module.exports = {
       credits: {
         type: Sequelize.INTEGER,
       },
+      avartar: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

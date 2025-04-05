@@ -1,15 +1,13 @@
-const rewardsController = require("../controllers/rewardsController");
+const rewardsController = require("../controllers/rewardsController.js");
 const express = require("express");
 const router = express.Router();
 
 // GET all rewards
-router.get("/rewards", rewardsController.getRewards);
-// GET a single reward
-router.get("/rewards/:id", rewardsController.getRewardById);
+router.get("/", rewardsController.getRewards);
 // CREATE a new reward
-router.post("/rewards", rewardsController.createReward);
+router.post("/", rewardsController.createReward);
 // UPDATE a reward
-router.put("/rewards/:id", rewardsController.updateReward);
+router.put("/:id", rewardsController.updateRewardById);
 // DELETE a reward
-router.delete("/rewards/:id", rewardsController.deleteReward);
+router.delete("/:id", rewardsController.deleteRewardById);
 module.exports = router;
