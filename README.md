@@ -12,3 +12,10 @@ rename the config.json to config.js
 update index.js file, filepath for config.json to js.
 create .sequelizerc file
 create server.js file
+
+npx sequelize-cli model:generate --name User --attributes name:string
+npx sequelize-cli db:migrate
+npx sequelize-cli model:generate --name Task --attributes name:string
+//npx sequelize-cli db:migrate:undo
+
+After creating all the modeles, create the BE queries in Controllers and routes.
