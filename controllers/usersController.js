@@ -11,6 +11,27 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+// update user credits/rewards balance
+
+const updateUserCredits = async (req, res) => {
+  try {
+    const { auth0Id } = req.params;
+    const { rewards } = req.body;
+
+    const user = await User.findOne({ where: { auth0Id } });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.rewards = rewards;
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update user" });
+  }
+};
 //get user by auth0 id
 const getUserByAuth0Id = async (req, res) => {
   try {
@@ -90,9 +111,27 @@ const createUser = async (req, res) => {
     });
   }
 };
+
+//get user by id
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserByAuth0Id,
   updateUserById,
   createUser,
+  updateUserCredits,
+  getUserById,
 };

@@ -7,7 +7,8 @@ const router = express.Router();
 router.get("/", usersController.getAllUsers);
 router.get("/auth/:auth0Id", usersController.getUserByAuth0Id);
 router.put("/:id", usersController.updateUserById);
-
+router.put("/auth/:auth0Id", usersController.updateUserCredits);
 router.post("/", usersController.createUser);
+router.get("/:id", usersController.getUserById);
 
 module.exports = router;

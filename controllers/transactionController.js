@@ -1,7 +1,6 @@
 //transactioncontroller
 
-const { Transaction } = require("sequelize");
-const { transactionModel } = require("../models/transaction.js");
+const { Transaction } = require("../models");
 
 //get all transactions with pagination
 const getTransactionList = async (req, res) => {
@@ -9,7 +8,7 @@ const getTransactionList = async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = 10;
     const offset = (page - 1) * limit;
-    const { count, rows } = await transactionModel.findAndCountAll({
+    const { count, rows } = await Transaction.findAndCountAll({
       limit,
       offset,
       order: [["createdAt", "DESC"]],

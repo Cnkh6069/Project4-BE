@@ -51,7 +51,8 @@ const getTaskById = async (req, res) => {
 // Create a new Task
 const createTask = async (req, res) => {
   try {
-    const { name, description, rewards, status, requestorId } = req.body;
+    const { name, description, rewards, status, requestorId, requestorName } =
+      req.body;
     // Create a new Task using Sequelize's create method
     const newTask = await Task.create({
       name,
@@ -59,6 +60,8 @@ const createTask = async (req, res) => {
       rewards,
       status: status || "Open",
       requestorId: requestorId || req.user.id,
+      requestorName,
+      acceptorId: null,
     });
     res.status(201).json(newTask); // Respond with the created Task
   } catch (error) {
